@@ -19,6 +19,21 @@ class ArticlesRepository extends ServiceEntityRepository
         parent::__construct($registry, Articles::class);
     }
 
+    public function findByCategorie($categorie)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT a
+            FROM App\Entity\Articles a
+            JOIN a.idcategorie c
+            WHERE c.nomcategorie = :categorie'
+        )->setParameter('categorie', $categorie);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */
