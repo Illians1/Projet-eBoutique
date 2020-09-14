@@ -4,10 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
 {
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="articles")
      */
@@ -21,6 +29,40 @@ class ArticlesController extends AbstractController
     }
 
     /**
+     * @Route("/articles/{id}", name="articles_add", requirements={"id":"\d+"})
+     */
+    public function addId($id)
+    {
+        $repository = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repository->findAll();
+        dump($articles);
+
+        // gets an attribute by name
+        $montant = $this->session->get('montant');
+        if ($montant == null) {
+            $montant = 0;
+        }
+        $panier = $this->session->get('panier');
+        if ($panier == null) {
+            $panier = array();
+        }
+        foreach ($articles as $value) {
+            if ($value->getIdarticle() == $id) {
+                $montant = $montant + $value->getPrixarticle();
+                $panier[] = $value;
+            }
+        }
+        // stores an attribute in the session for later reuse
+        $this->session->set('montant', $montant);
+        $this->session->set('panier', $panier);
+        $montant = $this->session->get('montant');
+        $panier = $this->session->get('panier');
+        dump($montant);
+        dump($panier);
+        return $this->render('articles/index.html.twig', ['articles' => $articles, 'panier' => $panier]);
+    }
+
+    /**
      * @Route("/articles/{categorie}", name="articles_categorie")
      */
     public function showCategorie($categorie)
@@ -31,9 +73,8 @@ class ArticlesController extends AbstractController
                 'No product found for category ' . $categorie
             );
         }
-        dump($articles);
 
-        // in the template, print things with {{ product.name }}
+        // in the template, print things with {{ article.name }}
         return $this->render('articles/index.html.twig', ['articles' => $articles]);
     }
 }
