@@ -21,7 +21,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/{categorie}", name="articles_categorie")
+     * @Route("/articles/{categorie}", name="articles_categorie")
      */
     public function showCategorie($categorie)
     {
