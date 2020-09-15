@@ -85,6 +85,11 @@ class Articles
     private $idcommande;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nombre;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -205,6 +210,18 @@ class Articles
             $this->idcommande->removeElement($idcommande);
             $idcommande->removeIdarticle($this);
         }
+
+        return $this;
+    }
+
+    public function getNombre(): ?int
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(?int $nombre): self
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }
