@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Articles;
+use App\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,28 +39,21 @@ class ArticlesController extends AbstractController
         dump($articles);
 
         // gets an attribute by name
-        $montant = $this->session->get('montant');
-        if ($montant == null) {
-            $montant = 0;
-        }
         $panier = $this->session->get('panier');
         if ($panier == null) {
             $panier = array();
         }
         foreach ($articles as $value) {
             if ($value->getIdarticle() == $id) {
-                $montant = $montant + $value->getPrixarticle();
-                $panier[] = $value;
+                $panier[] = new Panier($value);
             }
         }
         // stores an attribute in the session for later reuse
-        $this->session->set('montant', $montant);
         $this->session->set('panier', $panier);
-        $montant = $this->session->get('montant');
+
         $panier = $this->session->get('panier');
-        dump($montant);
         dump($panier);
-        return $this->render('articles/index.html.twig', ['articles' => $articles, 'panier' => $panier]);
+        return $this->render('articles/index.html.twig');
     }
 
     /**
