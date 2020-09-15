@@ -7,9 +7,17 @@
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <!-- remixicon -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         {% endblock %}
     </head>
+    <body>   
+        <header>
+        
+<!-- Nav Barre -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <H1 class="text-white">LineshoP</H1>
+        <a class="text-white " href="#">The best online for the real</a>
 <body>
     <header>
         <!-- Nav Barre -->
@@ -20,33 +28,36 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
             </ul>
-
-
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Active</a>
+                    <a class="text-success nav-link active ri-shopping-basket-fill ri-2x" href="#"></a>
                 </li>
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Active</a>
+                    <span class="text-success nav-link active">Panier</span>
                 </li>
                 <li class="nav-item">
-                    <a class="text-white nav-link" href="#">Link</a>
+                    <span class="text-white nav-link text-center">{% if app.session.get('count') is defined %} {{app.session.get('count')}} {% else %} 0 {% endif %}</span>
                 </li>
             </ul>
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Active</a>
+                    <span class="text-success nav-link active">Total</span>
                 </li>
                 <li class="nav-item">
-                    <a class="text-white nav-link" href="#">Link</a>
+                    <span class="text-white nav-link text-center">{% if app.session.get('montant') is defined %}{{app.session.get('montant')}} {% else %} 0 {% endif %}€</span>
                 </li>
             </ul>
-
         </div>
+<<<<<<< HEAD
            </nav>
+=======
+        </nav>
+        
+           
+>>>>>>> f809cb309d3456eac32b975ca46f030116d2b5ce
               <nav class=" navbar-expand-lg navbar-dark bg-secondary">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
@@ -71,7 +82,10 @@
     -->
 
         </header>
+<<<<<<< HEAD
+=======
         
+>>>>>>> 1194539e4b047d99918db659480a5839ffc6346a
         {% block body %}{% endblock %}
         {% block javascripts %}
         <!-- JS, Popper.js, and jQuery bootstrap -->
