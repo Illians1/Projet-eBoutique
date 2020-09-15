@@ -3,11 +3,6 @@
 {% block title %}Hello ArticlesController!{% endblock %}
 
 {% block body %}
-{% for article in articles %}
-        <li>Id :{{article.idarticle}}</br>Libellé :{{article.nomarticle}}</li>
-    {% endfor %}
-    
-
     <!-- Catégories - consoles - jeux -->
 
    <ul class="nav justify-content-start">
@@ -28,9 +23,48 @@
      -->
     </ul>
     <br>
+<div class="container-fluid">
+<div class="row">
+            <div class="card-deck d-flex justify-content-center ">
+                {% for article in articles %}                
+                    <div class="card col-4">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+            
+                       
+                            <!--cards-caption d-none d-md-block-->
+
+                            <div class="card-footer">
+                                <small class="col-6 text-center text-dark" href="#">
+                                <h1>{{  loop.index  }} - {{  article.nomarticle }} </h1>
+                                <br>Nom</small>
+                                <strong class="col-6 text-center text-success" href="#">
+                                <h1>{{  loop.index  }} - {{  article.prixarticle }} </h1>
+                                <br>prix</strong>
+                            
+                            {# <div class="card-footer">
+                                <small class="col-6 text-center text-dark" href="#">
+                                <h1>{{  loop.index  }} - {{ icone CADEAU  }} </h1> 
+                                <br>logo</small>
+                                <strong class="col-6 text-center text-dark" href="#">
+                                <h1>{{  loop.index  }} - {{  sondage.get_rating }} </h1>
+                                <br>Rating</strong> #}
+                            {# </div> #}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+</div>
+</div>
+
+
+
+
     <!-- Cartes - rang 1 -->
 
-    <div class="card-deck d-flex justify-content-center">
+{#     <div class="card-deck d-flex justify-content-center">
         <div class="card col-4">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
@@ -143,7 +177,7 @@
                     <small class="col-6 text-center text-dark">Rating</small>
                     <button type="button" class="float-right btn btn-success">+</button>
                 </div>
-            </div>
+            </div> #}
 
             <br>
 
