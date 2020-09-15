@@ -21,22 +21,36 @@ class PanierController extends AbstractController
     public function showpanier()
     {
         $panier = $this->session->get('panier');
-        $articlesPanier = array();
+        $arrayPanier = array();
+        $doublons = array();
         dump($panier);
         if ($panier != null) {
             $articles = $panier->getArticles();
         } else {
             $articles = array();
         }
-        foreach ($articles as $valueArticle) {
-            foreach ($articlesPanier as $valuePanier) {
-                if ($valuePanier == $valueArticle) {
-
+        foreach ($articles as $value) {
+            if (!in_array($value->getIdarticle(), $arrayPanier)) {
+                $arrayPanier[] = $value->getIdarticle();
+                $articlesPanier[]= $value;
+            } else {
+                $doublons[] = $value;
+            }
+        }
+        dump($articlesPanier);
+        foreach ($doublons as $value) {
+            foreach ($articlesPanier as $value2) {
+                if ($value->getIdarticle()==$value2->getIdarticle()) {
+                    $i = $value2->getNombre();
+                    $i++;
+                    $value2->setNombre($i);
                 }
             }
         }
+        dump($articlesPanier);
+        dump($doublons);
         return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController', 'articles' => $articles,
+            'controller_name' => 'PanierController', 'articles' => $articlesPanier,
         ]);
     }
 }

@@ -45,16 +45,17 @@ class ArticlesController extends AbstractController
         } else {
             $articlesPanier = array();
         }
+        $ajout = new Panier();
         foreach ($articles as $value) {
             if ($value->getIdarticle() == $id) {
-                $ajout = new Panier();
                 foreach ($articlesPanier as $value2) {
+                    $value2->setnombre(1);
                     $ajout->addArticle($value2);
                 }
+                $value->setnombre(1);
                 $ajout->addArticle($value);
             }
         }
-
         // stores an attribute in the session for later reuse
         $this->session->set('panier', $ajout);
 
@@ -85,6 +86,7 @@ class ArticlesController extends AbstractController
     public function removePanier()
     {
         $this->session->remove('panier');
+        $articles = array();
         return $this->render('articles/index.html.twig', [
             'controller_name' => 'ArticlesController', 'articles' => $articles,
         ]);

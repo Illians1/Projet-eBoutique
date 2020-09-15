@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Articles;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -61,5 +62,9 @@ class Panier
             $sum = $sum + $value->getPrixarticle();
         }
         return $sum;
+    }
+
+    public function checkSame()
+    {
     }
 }
