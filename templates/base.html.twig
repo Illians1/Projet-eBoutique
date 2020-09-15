@@ -31,7 +31,7 @@
                     <span class="text-success nav-link active">Panier</span>
                 </li>
                 <li class="nav-item">
-                    <span class="text-white nav-link text-center">{% if app.session.get('count') is defined %} {{app.session.get('count')}} {% else %} 0 {% endif %}</span>
+                    <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').articles|length}} {% else %} 0 {% endif %}</span>
                 </li>
             </ul>
 
@@ -40,7 +40,9 @@
                     <span class="text-success nav-link active">Total</span>
                 </li>
                 <li class="nav-item">
-                    <span class="text-white nav-link text-center">{% if app.session.get('montant') is defined %}{{app.session.get('montant')}} {% else %} 0 {% endif %}€</span>
+                    <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %}
+                    {{app.session.get('panier').getTotal}}
+                    {% else %} 0 {% endif %}€</span>
                 </li>
             </ul>
         </div>

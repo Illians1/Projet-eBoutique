@@ -24,6 +24,7 @@ class ArticlesController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Articles::class);
         $articles = $repository->findAll();
+
         return $this->render('articles/index.html.twig', [
             'controller_name' => 'ArticlesController', 'articles' => $articles,
         ]);
@@ -36,21 +37,21 @@ class ArticlesController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Articles::class);
         $articles = $repository->findAll();
-        dump($articles);
 
         // gets an attribute by name
         $panier = $this->session->get('panier');
-        if ($panier->getArticles() != null) {
+        if ($panier != null) {
             $articlesPanier = $panier->getArticles();
         } else {
             $articlesPanier = array();
         }
         foreach ($articles as $value) {
             if ($value->getIdarticle() == $id) {
-                dump($value);
                 $ajout = new Panier();
+                foreach ($articlesPanier as $value2) {
+                    $ajout->addArticle($value2);
+                }
                 $ajout->addArticle($value);
-                dump($ajout);
             }
         }
 
@@ -79,13 +80,13 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/count", name="articles")
+     * @Route("/remove", name="remove_panier")
      */
-    public function count()
+    public function removePanier()
     {
-        $count = Panier::countArticles();
-        dump($count);
-
-        return $this->render('articles/index.html.twig');
+        $this->session->remove('panier');
+        return $this->render('articles/index.html.twig', [
+            'controller_name' => 'ArticlesController', 'articles' => $articles,
+        ]);
     }
 }

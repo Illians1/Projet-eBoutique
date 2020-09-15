@@ -29,15 +29,6 @@ class Panier
         $this->articles = new ArrayCollection();
     }
 
-    public function countArticles()
-    {
-        $n = 0;
-        foreach ($this->Articles as $value) {
-            $n++;
-        }
-        return $n;
-    }
-
     /**
      * @return Collection|Articles[]
      */
@@ -62,5 +53,14 @@ class Panier
         }
 
         return $this;
+    }
+
+    public function getTotal()
+    {
+        $sum = 0;
+        foreach ($this->articles as $value) {
+            $sum = $sum + $value->getPrixarticle();
+        }
+        return $sum;
     }
 }
