@@ -28,214 +28,28 @@
 
 <section class="col-12">
     <div class="row row-cols-3">
-   
-   {% for article in articles %} 
-   <div class="col mb-4"> 
-    <div class="card">
-      <img src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}" class="card-img-top">
+    {% for article in articles %} 
+        <div class="col mb-4 w-auto p-3"> 
+            <div class="card ">
+                <img src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}" class="card-img-top  ">
       
-      <div class="card-body">
-        <h5 class="card-title">Paradise Lost</h5>
-        <p class="card-text">In Requiem</p>
-      </div>
-    </div>
-    </div>
+            <div class="card-body row d-flex justify-content-around">
+                <small class=" text-dark">
+                <h3>{{  article.nomarticle }} </h3>
+                </small>
+                <small class="font-weight-bold text-success">
+                <h3>{{  article.prixarticle }} €</h3>
+                </small>
+                <button type="button" class="float-right btn btn-success">+</button> 
+            </div>
+            </div>
+        </div>
     {% endfor %}
-
-    
-     </div>
+    </div>
 </section>
 
-
-{# 
-<div class="col-12">
-<div class="row row-cols-3 ">
-    <div class="col mb-4">
-    {% for article in articles %}  
-    <div class="card">
-      <div class="card-body">
-        <img class="img-fluid" src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}">
-        <div class="card-footer">
-            <small class="col-4 text-center text-dark">
-            <h1>{{  loop.index  }} - {{  article.nomarticle }} </h1>
-            <br></small>
-            <strong class="col-2 text-center text-success">
-            <h1>{{  loop.index  }} - {{  article.prixarticle }} </h1>
-            <br></strong>
-            <button type="button" class="float-right btn btn-success">+</button>  #}
-        {# <div class="card-footer">
-                                <small class="col-6 text-center text-dark" href="#">
-                                <h1>{{  loop.index  }} - {{ icone CADEAU  }} </h1> 
-                                <br>logo</small>
-                                <strong class="col-6 text-center text-dark" href="#">
-                                <h1>{{  loop.index  }} - {{  sondage.get_rating }} </h1>
-                                <br>Rating</strong> #}
-        {# </div> #}
-{#        </div>
-    </div>
-    {% endfor %}
-</div>
-</div>
-</div> 
- #}
-{# 
-<div class="container col-12">
-            <div class="card-deck d-flex justify-content-center row">
-                {% for article in articles %}                
-                    <div class="card col-4">
-                        <img src="{{ article.getImagearticle }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-            
-                       
-                            <!--cards-caption d-none d-md-block-->
-
-                            <div class="card-footer">
-                                <small class="col-6 text-center text-dark" href="#">
-                                <h1>{{  loop.index  }} - {{  article.getNomarticle }} </h1>
-                                <br>Nom</small>
-                                <strong class="col-6 text-center text-success" href="#">
-                                <h1>{{  loop.index  }} - {{  article.getPrixarticle }} </h1>
-                                <br>prix</strong>
-                                <button type="button" class="float-right btn btn-success">+</button>
-                            
-                            {# <div class="card-footer">
-                                <small class="col-6 text-center text-dark" href="#">
-                                <h1>{{  loop.index  }} - {{ icone CADEAU  }} </h1> 
-                                <br>logo</small>
-                                <strong class="col-6 text-center text-dark" href="#">
-                                <h1>{{  loop.index  }} - {{  sondage.get_rating }} </h1>
-                                <br>Rating</strong> #}
-                            {# </div> #}
-  {#                           </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-            </div>
-</div> #} 
 <br>
 
-
-
-
-    <!-- Cartes - rang 1 -->
-
-{#     <div class="card-deck d-flex justify-content-center">
-        <div class="card col-4">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="col-6 text-center text-dark" href="#">Description</small>
-                <small class="col-6 text-center text-success" href="#">prix</small>
-            </div>
-            <div class="card-footer">
-                <small class="col-6 text-center text-dark" href="#">logo</small>
-                <small class="col-6 text-center text-dark">Rating</small>
-                <button type="button" class="float-right btn btn-success">+</button>
-            </div>
-        </div>
-
-        <div class="card col-4">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="col-6 text-center text-dark" href="#">Description</small>
-                <small class="col-6 text-center text-success" href="#">prix</small>
-            </div>
-            <div class="card-footer">
-                <small class="col-6 text-center text-dark" href="#">logo</small>
-                <small class="col-6 text-center text-dark">Rating</small>
-                <button type="button" class="float-right btn btn-success">+</button>
-            </div>
-        </div>
-
-        <div class="card col-4">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                    additional
-                    content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="col-6 text-center text-dark" href="#">Description</small>
-                <small class="col-6 text-center text-success" href="#">prix</small>
-            </div>
-            <div class="card-footer">
-                <small class="col-6 text-center text-dark" href="#">logo</small>
-                <small class="col-6 text-center text-dark">Rating</small>
-                <button type="button" class="float-right btn btn-success">+</button>
-            </div>
-        </div>
-        <br>
-
-        <!-- Cartes - rang 2 -->
-
-        <div class="card-deck d-flex justify-content-center">
-            <div class="card col-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="col-6 text-center text-dark" href="#">Description</small>
-                    <small class="col-6 text-center text-success" href="#">prix</small>
-                </div>
-                <div class="card-footer">
-                    <small class="col-6 text-center text-dark" href="#">logo</small>
-                    <small class="col-6 text-center text-dark">Rating</small>
-                    <button type="button" class="float-right btn btn-success">+</button>
-                </div>
-            </div>
-
-            <div class="card col-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="col-6 text-center text-dark" href="#">Description</small>
-                    <small class="col-6 text-center text-success" href="#">prix</small>
-                </div>
-                <div class="card-footer">
-                    <small class="col-6 text-center text-dark" href="#">logo</small>
-                    <small class="col-6 text-center text-dark">Rating</small>
-                    <button type="button" class="float-right btn btn-success">+</button>
-                </div>
-            </div>
-
-            <div class="card col-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="col-6 text-center text-dark" href="#">Description</small>
-                    <small class="col-6 text-center text-success" href="#">prix</small>
-                </div>
-                <div class="card-footer">
-                    <small class="col-6 text-center text-dark" href="#">logo</small>
-                    <small class="col-6 text-center text-dark">Rating</small>
-                    <button type="button" class="float-right btn btn-success">+</button>
-                </div>
-            </div> #}
-
-            <br>
 
 </body>
 {% endblock %}
