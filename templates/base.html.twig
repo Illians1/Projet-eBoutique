@@ -10,18 +10,10 @@
     {% block body %}
     {% block header %}
         <header>
-<<<<<<< HEAD
-        
-<!-- Nav Barre -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <H1 class="text-white">LineshoP</H1>
-        <a class="text-white " href="#">The best online for the real</a>
-=======
         <!-- Nav Barre -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <H1 class="text-white">LineshoP</H1>
                 <a class="text-white " href="#">The best online for the real</a>
->>>>>>> 902a350171c093a31febee13acb4c68ed09451f8
 
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
@@ -38,11 +30,7 @@
                     <a class="text-success nav-link active" href="#">Items</a>
                 </li>
                 <li class="nav-item">
-<<<<<<< HEAD
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').articles|length}} {% else %} 0 {% endif %}</span>
-=======
-                    <a class="text-white nav-link font-weight-bold" href="#">nb</a>
->>>>>>> 949f66e62a06eae4666c1eb015d36f523374f744
                 </li>
             </ul>
 
@@ -51,18 +39,14 @@
                     <a class="text-success nav-link active" href="#">Total</a>
                 </li>
                 <li class="nav-item">
-<<<<<<< HEAD
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %}
                     {{app.session.get('panier').getTotal}}
                     {% else %} 0 {% endif %}€</span>
-=======
-                    <a class="text-white nav-link font-weight-bold" href="#">Prix €</a>
->>>>>>> 949f66e62a06eae4666c1eb015d36f523374f744
                 </li>
             </ul>
 
         </div>
-           
+     </nav>  
               <nav class=" navbar-expand-lg navbar-dark bg-secondary">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">

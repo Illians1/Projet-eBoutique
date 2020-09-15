@@ -13,10 +13,12 @@ class PanierController extends AbstractController
     /**
      * @Route("/panier", name="panier")
      */
-    public function index()
+    public function showpanier()
     {
+        $repository = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repository->findAll();
         return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController',
+            'controller_name' => 'PanierController', 'articles' => $articles,
         ]);
     }
 }
