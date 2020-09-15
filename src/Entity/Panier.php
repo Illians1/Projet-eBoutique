@@ -22,16 +22,20 @@ class Panier
     /**
      * @ORM\ManyToMany(targetEntity=Articles::class)
      */
-    private $Articles;
+    private $articles;
 
     public function __construct()
     {
-        $this->Articles = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function countArticles()
     {
-        return $this->id;
+        $n = 0;
+        foreach ($this->Articles as $value) {
+            $n++;
+        }
+        return $n;
     }
 
     /**
@@ -39,13 +43,13 @@ class Panier
      */
     public function getArticles(): Collection
     {
-        return $this->Articles;
+        return $this->articles;
     }
 
     public function addArticle(Articles $article): self
     {
-        if (!$this->Articles->contains($article)) {
-            $this->Articles[] = $article;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
         }
 
         return $this;
@@ -53,8 +57,8 @@ class Panier
 
     public function removeArticle(Articles $article): self
     {
-        if ($this->Articles->contains($article)) {
-            $this->Articles->removeElement($article);
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
         }
 
         return $this;
