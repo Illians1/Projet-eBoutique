@@ -3,50 +3,66 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-        <!-- bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        
-        <!-- remixicon -->
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        {% block stylesheets %}<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         {% endblock %}
     </head>
     <body>   
+    {% block body %}
+    {% block header %}
         <header>
+<<<<<<< HEAD
+        
+<!-- Nav Barre -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <H1 class="text-white">LineshoP</H1>
+        <a class="text-white " href="#">The best online for the real</a>
+=======
         <!-- Nav Barre -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <H1 class="text-white">LineshoP</H1>
                 <a class="text-white " href="#">The best online for the real</a>
+>>>>>>> 902a350171c093a31febee13acb4c68ed09451f8
 
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
             </ul>
+
+
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active ri-shopping-basket-fill ri-2x" href="#"></a>
+                    <a class="text-success nav-link active" href="#">Panier</a>
                 </li>
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <span class="text-success nav-link active">Panier</span>
+                    <a class="text-success nav-link active" href="#">Items</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').articles|length}} {% else %} 0 {% endif %}</span>
+=======
+                    <a class="text-white nav-link font-weight-bold" href="#">nb</a>
+>>>>>>> 949f66e62a06eae4666c1eb015d36f523374f744
                 </li>
             </ul>
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <span class="text-success nav-link active">Total</span>
+                    <a class="text-success nav-link active" href="#">Total</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %}
                     {{app.session.get('panier').getTotal}}
                     {% else %} 0 {% endif %}€</span>
+=======
+                    <a class="text-white nav-link font-weight-bold" href="#">Prix €</a>
+>>>>>>> 949f66e62a06eae4666c1eb015d36f523374f744
                 </li>
             </ul>
+
         </div>
-           </nav>
+           
               <nav class=" navbar-expand-lg navbar-dark bg-secondary">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
@@ -71,9 +87,10 @@
     -->
 
         </header>
-        {% block body %}{% endblock %}
+        {% endblock %}
+        {% endblock %}
         {% block javascripts %}
-        <!-- JS, Popper.js, and jQuery bootstrap -->
+        <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
