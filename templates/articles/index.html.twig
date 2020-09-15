@@ -26,11 +26,63 @@
     </ul>
     <br>
 
+<section class="col-12">
+    <div class="row row-cols-3">
+   
+   {% for article in articles %} 
+   <div class="col mb-4"> 
+    <div class="card">
+      <img src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}" class="card-img-top">
+      
+      <div class="card-body">
+        <h5 class="card-title">Paradise Lost</h5>
+        <p class="card-text">In Requiem</p>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
 
-<div class="container-fluid">
+    
+     </div>
+</section>
+
+
+{# 
+<div class="col-12">
+<div class="row row-cols-3 ">
+    <div class="col mb-4">
+    {% for article in articles %}  
+    <div class="card">
+      <div class="card-body">
+        <img class="img-fluid" src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}">
+        <div class="card-footer">
+            <small class="col-4 text-center text-dark">
+            <h1>{{  loop.index  }} - {{  article.nomarticle }} </h1>
+            <br></small>
+            <strong class="col-2 text-center text-success">
+            <h1>{{  loop.index  }} - {{  article.prixarticle }} </h1>
+            <br></strong>
+            <button type="button" class="float-right btn btn-success">+</button>  #}
+        {# <div class="card-footer">
+                                <small class="col-6 text-center text-dark" href="#">
+                                <h1>{{  loop.index  }} - {{ icone CADEAU  }} </h1> 
+                                <br>logo</small>
+                                <strong class="col-6 text-center text-dark" href="#">
+                                <h1>{{  loop.index  }} - {{  sondage.get_rating }} </h1>
+                                <br>Rating</strong> #}
+        {# </div> #}
+{#        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</div> 
+ #}
+{# 
+<div class="container col-12">
             <div class="card-deck d-flex justify-content-center row">
                 {% for article in articles %}                
-                    <div class="card col-ms-4">
+                    <div class="card col-4">
                         <img src="{{ article.getImagearticle }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
@@ -45,6 +97,7 @@
                                 <strong class="col-6 text-center text-success" href="#">
                                 <h1>{{  loop.index  }} - {{  article.getPrixarticle }} </h1>
                                 <br>prix</strong>
+                                <button type="button" class="float-right btn btn-success">+</button>
                             
                             {# <div class="card-footer">
                                 <small class="col-6 text-center text-dark" href="#">
@@ -54,12 +107,12 @@
                                 <h1>{{  loop.index  }} - {{  sondage.get_rating }} </h1>
                                 <br>Rating</strong> #}
                             {# </div> #}
-                            </div>
+  {#                           </div>
                         </div>
                     </div>
                     {% endfor %}
             </div>
-</div>
+</div> #} 
 <br>
 
 
