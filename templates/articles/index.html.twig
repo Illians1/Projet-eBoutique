@@ -23,12 +23,13 @@
      -->
     </ul>
     <br>
+
+
 <div class="container-fluid">
-<div class="row">
-            <div class="card-deck d-flex justify-content-center ">
+            <div class="card-deck d-flex justify-content-center row">
                 {% for article in articles %}                
                     <div class="card col-4">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="{{ article.getImagearticle }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
             
@@ -37,10 +38,10 @@
 
                             <div class="card-footer">
                                 <small class="col-6 text-center text-dark" href="#">
-                                <h1>{{  loop.index  }} - {{  article.nomarticle }} </h1>
+                                <h1>{{  loop.index  }} - {{  article.getNomarticle }} </h1>
                                 <br>Nom</small>
                                 <strong class="col-6 text-center text-success" href="#">
-                                <h1>{{  loop.index  }} - {{  article.prixarticle }} </h1>
+                                <h1>{{  loop.index  }} - {{  article.getPrixarticle }} </h1>
                                 <br>prix</strong>
                             
                             {# <div class="card-footer">
@@ -57,7 +58,7 @@
                     {% endfor %}
             </div>
 </div>
-</div>
+<br>
 
 
 
