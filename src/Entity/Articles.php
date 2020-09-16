@@ -61,13 +61,6 @@ class Articles
     private $type;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="vidArticle", type="string", length=30, nullable=false)
-     */
-    private $vidarticle;
-
-    /**
      * @var \Categories
      *
      * @ORM\ManyToOne(targetEntity="Categories")
@@ -156,19 +149,6 @@ class Articles
 
         return $this;
     }
-
-    public function getVidarticle(): ?string
-    {
-        return $this->vidarticle;
-    }
-
-    public function setVidarticle(string $vidarticle): self
-    {
-        $this->vidarticle = $vidarticle;
-
-        return $this;
-    }
-
     public function getIdcategorie(): ?Categories
     {
         return $this->idcategorie;
