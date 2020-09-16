@@ -44,7 +44,7 @@
         <tr>
             <td colspan="4"></td>
             <td>Totals</td>
-            <td>{{app.session.get('panier').getTotal}}</td>
+            <td>{% if app.session.get('panier') is not null %} {{app.session.get('panier').getTotal}} {% else %} 0 {% endif %}</td>
         </tr>
     </tfoot>
 </table>

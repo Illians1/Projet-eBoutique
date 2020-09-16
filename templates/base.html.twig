@@ -30,7 +30,7 @@
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Items</a>
+                    <span class="text-success nav-link active" href="#">Items</span>
                 </li>
                 <li class="nav-item">
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').articles|length}} {% else %} 0 {% endif %}</span>
@@ -39,7 +39,7 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Total</a>
+                    <span class="text-success nav-link active" href="#">Total</span>
                 </li>
                 <li class="nav-item">
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %}
