@@ -1,5 +1,17 @@
-
+/*--Dimensionnement des images dans les cards--*/
 .imgTaille {
 	max-width: 250px;
 	height: 250px;
 }
+
+/*--Dimensionnement des images dans les cards--*/
+.imgReduct {
+	max-width: 75px;
+	height: 75px;
+}
+/*
+.imgMarge {
+	margin-top: 0 ;
+	padding-top: 0 ;
+	border: 0;
+}*/
