@@ -50,10 +50,6 @@ class Panier
         return $sum;
     }
 
-    public function checkSame()
-    {
-    }
-
     public function getNombreArticles(): ?array
     {
         return $this->nombreArticles;
