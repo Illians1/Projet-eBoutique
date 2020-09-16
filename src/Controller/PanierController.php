@@ -89,4 +89,24 @@ class PanierController extends AbstractController
             }
         }
     }
+
+    /**
+     * @Route("/panier/removeAll/{id}", name="panier_remove_all", requirements={"id":"\d+"})
+     */
+    public function removeAllArticle($id)
+    {
+        $panier = $this->session->get('panier');
+        if ($panier != null) {
+            $articles = $panier->getArticles();
+        } else {
+            $articles = array();
+        }
+        foreach ($articles as $value) {
+            if ($value->getIdarticle() == $id) {
+                $panier->removeArticle($value);
+            }
+        }
+        $this->session->set('panier', $panier);
+        return $this->redirectToRoute('panier');
+    }
 }

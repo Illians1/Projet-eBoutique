@@ -34,7 +34,7 @@
       {% endfor %}
       <a class="ri-add-box-line" href="{{ path('panier_add', {id:article.idarticle}) }}"></a></td>
       <td class="align-middle">prix avec tva</td>
-      <td class="align-middle"><a href="{{ path('panier_remove', {id:article.idarticle}) }}" class="text-decoration-none text-dark"><i class="ri-delete-bin-2-line ri-xl "></i></a></td>
+      <td class="align-middle"><a href="{{ path('panier_remove_all', {id:article.idarticle}) }}" class="text-decoration-none text-dark"><i class="ri-delete-bin-2-line ri-xl "></i></a></td>
     </tr>
     
     {% endfor %}
