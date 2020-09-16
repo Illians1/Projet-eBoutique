@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="text-right mb-3">
-                <form method="post" action="">
+                <form method="post" action="{{ path('articles_add', {id:article.idarticle}) }}">
                 <input name="price" value = "{{article.prixarticle}}" type="hidden">
                 <button type="submit" name="article" value="{{article.idarticle}}" class="float-right btn btn-success font-weight-bold">+</button>
                 </form>

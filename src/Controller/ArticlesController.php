@@ -79,9 +79,9 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/remove", name="remove_panier")
+     * @Route("/removeAll", name="remove_all")
      */
-    public function removePanier()
+    public function removeAll()
     {
         $this->session->remove('panier');
         $articles = array();
