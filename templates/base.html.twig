@@ -17,7 +17,6 @@
         <!-- Nav Barre -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <H1 class="text-white">LineshoP</H1>
-                <a class="text-white " href="#">The best online for the real</a>
 
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
@@ -31,7 +30,7 @@
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Items</a>
+                    <div class="text-success nav-link">Items</div>
                 </li>
                 <li class="nav-item">
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').articles|length}} {% else %} 0 {% endif %}</span>
@@ -40,7 +39,7 @@
 
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="text-success nav-link active" href="#">Total</a>
+                    <div class="text-success nav-link">Total</div>
                 </li>
                 <li class="nav-item">
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %}
@@ -54,8 +53,12 @@
               <nav class=" navbar-expand-lg navbar-dark bg-secondary">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <p class="text-white ">Wellcome <a class=" text-white" href="#">mail@orange.fr</a> you can <a
-                                class=" text-success" href="#">logout</a></p>
+                        <p class="text-white ">
+                        {% if app.user.username is defined %} Wellcome {{ app.user.username }} you can <a class=" text-success" href="{{ path('app_logout') }}">logout</a></p>
+                       {% else %}
+                       <p class="text-white ">
+                       Welcome visitor you can <a class=" text-success" href="{{ path('app_login') }}">login</a> or <a class=" text-success" href="{{ path('app_register') }}">register</a></p>
+                       {% endif %}
                         <!--
                         <a class="nav-link active text-success" href="#">logout</a>
                                 -->
