@@ -12,10 +12,10 @@
     <tr class="text-middle text-center">
       <th scope="col"></th>
       <th scope="col">Produit sélectionné</th>
-      <th scope="col">Prix</th>
+      <th scope="col">Prix unitaire</th>
       <th scope="col">Quantité</th>
-      <th scope="col">Total</th>
-      <th scope="col">Acheter</th>
+      <th scope="col">Prix total / article</th>
+      <th scope="col">Supprimer</th>
     </tr>
   </thead>
   
@@ -25,16 +25,16 @@
       <td class=""><img class="img-fluid imgReduct" src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}"></td>
       <td class="align-middle">{{article.nomarticle}}</td>
       <td class="align-middle">{{article.prixarticle}}</td>
-      <td class="align-middle"><a class="ri-checkbox-indeterminate-line" href="{{ path('panier_remove', {id:article.idarticle}) }}"></a><span>
+      <td class="align-middle"><a class="ri-checkbox-indeterminate-line ri-lg" href="{{ path('panier_remove', {id:article.idarticle}) }}"></a><span>
       {% for key, cat in nombre %}
       {% if key == article.idarticle %}
       {{cat}}
       {% endif %}
       </span>
       {% endfor %}
-      <a class="ri-add-box-line" href="{{ path('panier_add', {id:article.idarticle}) }}"></a></td>
+      <a class="ri-add-box-line ri-lg" href="{{ path('panier_add', {id:article.idarticle}) }}"></a></td>
       <td class="align-middle">prix avec tva</td>
-      <td class="align-middle"><a href="{{ path('panier_remove_all', {id:article.idarticle}) }}" class="text-decoration-none text-dark"><i class="ri-delete-bin-2-line ri-xl "></i></a></td>
+      <td class="align-middle"><a href="{{ path('panier_remove_all', {id:article.idarticle}) }}" class="text-decoration-none text-danger"><i class="ri-delete-bin-2-line ri-xl"></i></a></td>
     </tr>
     
     {% endfor %}
@@ -42,9 +42,14 @@
 
   <tfoot>
         <tr>
+            <td colspan="4" class="font-weight-bold text-right">Total de votre commande:</td>
+            <td class="font-weight-bold text-success text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').getTotal}} {% else %} 0 {% endif %}€</td>
+            <td class="font-weight-bold"></td>
+        </tr>
+        <tr>
             <td colspan="4"></td>
-            <td>Totals</td>
-            <td>{% if app.session.get('panier') is not null %} {{app.session.get('panier').getTotal}} {% else %} 0 {% endif %}</td>
+            <td class="font-weight-bold text-success d-flex justify-content-center"><button type="button" class="float-right btn btn-success">Commander</button></td>
+            <td></td>
         </tr>
     </tfoot>
 </table>
