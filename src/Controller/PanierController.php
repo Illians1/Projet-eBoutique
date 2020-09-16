@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Articles;
 use App\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -23,7 +24,6 @@ class PanierController extends AbstractController
     {
         $panier = $this->session->get('panier');
         $arrayPanier = array();
-        dump($panier);
         if ($panier != null) {
             $articles = $panier->getArticles();
         } else {
@@ -41,7 +41,6 @@ class PanierController extends AbstractController
             }
         }
         $newPanier->setNombreArticles($arrayPanier);
-        dump($newPanier);
 
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController', 'panier' => $newPanier, 'nombre' => $arrayPanier,
@@ -61,6 +60,30 @@ class PanierController extends AbstractController
         foreach ($articles as $value) {
             if ($value->getIdarticle() == $id) {
                 $panier->removeArticle($value);
+                $this->session->set('panier', $panier);
+                return $this->redirectToRoute('panier');
+            }
+        }
+    }
+
+    /**
+     * @Route("/panier/add/{id}", name="panier_add", requirements={"id":"\d+"})
+     */
+    public function addArticle($id)
+    {
+        $repository = $this->getDoctrine()->getRepository(Articles::class);
+        $articles = $repository->findAll();
+
+        $panier = $this->session->get('panier');
+        if ($panier != null) {
+            $articlesPanier = $panier->getArticles();
+        } else {
+            $articlesPanier = array();
+        }
+
+        foreach ($articles as $value) {
+            if ($value->getIdarticle() == $id) {
+                $panier->addArticle($value);
                 $this->session->set('panier', $panier);
                 return $this->redirectToRoute('panier');
             }
