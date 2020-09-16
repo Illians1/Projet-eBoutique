@@ -5,33 +5,19 @@ namespace App\Entity;
 use App\Entity\Articles;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(readOnly=true)
- */
 class Panier
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Articles::class)
-     */
     private $articles;
+
+    private $nombreArticles = [];
 
     public function __construct()
     {
         $this->articles = new ArrayCollection();
     }
 
-    /**
-     * @return Collection|Articles[]
-     */
     public function getArticles(): Collection
     {
         return $this->articles;
@@ -66,5 +52,17 @@ class Panier
 
     public function checkSame()
     {
+    }
+
+    public function getNombreArticles(): ?array
+    {
+        return $this->nombreArticles;
+    }
+
+    public function setNombreArticles(?array $nombreArticles): self
+    {
+        $this->nombreArticles = $nombreArticles;
+
+        return $this;
     }
 }

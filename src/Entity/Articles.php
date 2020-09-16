@@ -85,11 +85,6 @@ class Articles
     private $idcommande;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $nombre;
-
-    /**
      * Constructor
      */
     public function __construct()

@@ -22,7 +22,6 @@ class PanierController extends AbstractController
     {
         $panier = $this->session->get('panier');
         $arrayPanier = array();
-        $doublons = array();
         dump($panier);
         if ($panier != null) {
             $articles = $panier->getArticles();
@@ -30,27 +29,35 @@ class PanierController extends AbstractController
             $articles = array();
         }
         foreach ($articles as $value) {
-            if (!in_array($value->getIdarticle(), $arrayPanier)) {
-                $arrayPanier[] = $value->getIdarticle();
-                $articlesPanier[]= $value;
-            } else {
-                $doublons[] = $value;
+            if (array_key_exists($value->getIdarticle(), $arrayPanier)) {
+                $i = $arrayPanier[$value->getIdarticle()];
+                $arrayPanier[$value->getIdarticle()] = $i++;
             }
         }
-        dump($articlesPanier);
-        foreach ($doublons as $value) {
-            foreach ($articlesPanier as $value2) {
-                if ($value->getIdarticle()==$value2->getIdarticle()) {
-                    $i = $value2->getNombre();
-                    $i++;
-                    $value2->setNombre($i);
-                }
-            }
-        }
-        dump($articlesPanier);
-        dump($doublons);
+
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController', 'articles' => $articlesPanier,
         ]);
     }
 }
+
+foreach ($articles as $value) {
+    if (!in_array($value->getIdarticle(), $arrayPanier)) {
+        $arrayPanier[] = $value->getIdarticle();
+        $articlesPanier[] = $value;
+    } else {
+        $doublons[] = $value;
+    }
+}
+dump($articlesPanier);
+foreach ($doublons as $value) {
+    foreach ($articlesPanier as $value2) {
+        if ($value->getIdarticle() == $value2->getIdarticle()) {
+            $i = $value2->getNombre();
+            $i++;
+            $value2->setNombre($i);
+        }
+    }
+}
+dump($articlesPanier);
+dump($doublons);
