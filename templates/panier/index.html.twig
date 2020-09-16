@@ -3,6 +3,8 @@
 {% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
+
+{{ parent() }}
 <span><h1> Panier </h1></span>
 <div class="table-responsive{-sm|-md|-lg|-xl}">
 <table class="table table-striped table-hover align-middle">
@@ -18,14 +20,19 @@
   </thead>
   
   <tbody class="text-middle text-center">
-  {% for article in articles %}
+  {% for article in panier.articles %}
     <tr>
       <td><img class="img-fluid" src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}"></td>
       <td class="align-middle">{{article.nomarticle}}</td>
       <td class="align-middle">{{article.prixarticle}}</td>
-      <td class="align-middle">quantité</td>
+      <td class="align-middle">
+      {% for key, cat in nombre %}
+      {% if key == article.idarticle %}
+      {{cat}}
+      {% endif %}
+      {% endfor %}</td>
       <td class="align-middle">prix avec tva</td>
-      <td class="align-middle"><a href="#" class="text-decoration-none text-dark"><i class="ri-delete-bin-2-line ri-xl "></i></a></td>
+      <td class="align-middle"><a href="{{ path('panier_remove', {id:article.idarticle}) }}" class="text-decoration-none text-dark"><i class="ri-delete-bin-2-line ri-xl "></i></a></td>
     </tr>
     
     {% endfor %}
@@ -35,7 +42,7 @@
         <tr>
             <td colspan="4"></td>
             <td>Totals</td>
-            <td>21,000</td>
+            <td>{{app.session.get('panier').getTotal}}</td>
         </tr>
     </tfoot>
 </table>

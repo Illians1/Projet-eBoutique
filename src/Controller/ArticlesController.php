@@ -49,10 +49,8 @@ class ArticlesController extends AbstractController
         foreach ($articles as $value) {
             if ($value->getIdarticle() == $id) {
                 foreach ($articlesPanier as $value2) {
-                    $value2->setnombre(1);
                     $ajout->addArticle($value2);
                 }
-                $value->setnombre(1);
                 $ajout->addArticle($value);
             }
         }
