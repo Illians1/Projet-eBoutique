@@ -208,16 +208,4 @@ class Articles
 
         return $this;
     }
-
-    public function getNombre(): ?int
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(?int $nombre): self
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
 }
