@@ -9,13 +9,13 @@
     <!-- Catégories - consoles - jeux -->
    <ul class="nav justify-content-start">
         <li class="nav-item">
-            <a class="nav-link active text-dark font-weight-bold" href="#">All categories</a>
+            <a class="nav-link active text-dark font-weight-bold" href="{{ path('articles') }}">All categories</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark font-weight-bold" href="#">Consoles</a>
+            <a class="nav-link text-dark font-weight-bold" href="{{ path('articles_categorie', {categorie:"consoles"}) }}">Consoles</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark font-weight-bold" href="#">Jeux</a>
+            <a class="nav-link text-dark font-weight-bold" href="{{ path('articles_categorie', {categorie:"jeux"}) }}">Jeux</a>
         </li>
         <!--
         <li class="nav-item">
