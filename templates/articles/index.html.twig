@@ -4,9 +4,14 @@
 
 {% block body %}
 
+<<<<<<< HEAD
 {{ parent() }} {#fait référence au header base#}
     <!-- Catégories - consoles - jeux -->
+=======
+{{ parent() }}
+>>>>>>> 60885d26798967a327c8fe7775f22a10bcfcc4e1
 
+    <!-- Catégories - consoles - jeux -->
    <ul class="nav justify-content-start">
         <li class="nav-item">
             <a class="nav-link active text-dark font-weight-bold" href="#">All categories</a>
@@ -26,30 +31,32 @@
     </ul>
     <br>
 
-<section class="col-12">
-    <div class="row row-cols-3">
-    {% for article in articles %} 
-        <div class="col mb-4 vw-75 p-3"> 
-            <div class="card ">
-                <img src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}" class="card-img-top  ">
-      
-            <div class="card-body row d-flex justify-content-around">
-                <small class=" text-dark">
-                <h3>{{  article.nomarticle }} </h3>
-                </small>
-                <small class="font-weight-bold text-success">
-                <h3>{{  article.prixarticle }} €</h3>
-                </small>
-                <button type="button" class="float-right btn btn-success">+</button> 
+<!-- Cards dans boucle FOR mb-6-sm-2-->
+<!--<section class="col-12 d-flex justify-content-sm-around">-->
+
+<div class="container">
+    <div class="row justify-content-center">
+        {% for article in articles %}
+        <div class="card col-lg-4 col-md-6 col-sm-6 col-12">
+            <div class="card-body text-center">
+                <img src="{{ asset('img/'~ article.imagearticle)}}" class="imgTaille" alt="{{article.nomarticle}}">
+                <div class="card-title">
+                    <span><i class="font-weight-bold">{{article.nomarticle}}</i></span>
+                    <span class="text-success font-weight-bold"><b>{{article.prixarticle}}€</b></span>
+                </div>
+                <div class="card-text text-justify">
+                    <i>{{article.descriptionarticle}}</i>
+                </div>
             </div>
+            <div class="text-right mb-3">
+                <form method="post" action="">
+                <input name="price" value = "{{article.prixarticle}}" type="hidden">
+                <button type="submit" name="article" value="{{article.idarticle}}" class="float-right btn btn-success font-weight-bold">+</button>
+                </form>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
-</section>
+</div>
 
-<br>
-
-
-</body>
 {% endblock %}
