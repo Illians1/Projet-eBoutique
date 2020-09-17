@@ -24,22 +24,10 @@
     <tr>
       <td class=""><img class="img-fluid imgReduct" src="{{ asset ('img/' ~ article.imagearticle )}}" alt="{{article.nomarticle}}"></td>
       <td class="align-middle">{{article.nomarticle}}</td>
-<<<<<<< HEAD
       <td class="align-middle">{{article.prixarticle}}</td>
       <td class="align-middle"><a class="ri-checkbox-indeterminate-line ri-lg" href="{{ path('modif_panier', {id:article.idarticle, modif:"delete"}) }}"></a>
       <span>{{app.session.get('panier').getNombreArticles(article.idarticle)}}</span>
       <a class="ri-add-box-line ri-lg" href="{{ path('modif_panier', {id:article.idarticle, modif:"ajout"}) }}"></a></td>
-=======
-      <td class="align-middle">{{article.prixarticle}} €</td>
-      <td class="align-middle"><a class="ri-checkbox-indeterminate-line ri-lg" href="{{ path('panier_remove', {id:article.idarticle}) }}"></a><span>
-      {% for key, cat in nombre %}
-      {% if key == article.idarticle %}
-      {{cat}}
-      {% endif %}
-      </span>
-      {% endfor %}
-      <a class="ri-add-box-line ri-lg" href="{{ path('panier_add', {id:article.idarticle}) }}"></a></td>
->>>>>>> b06a917a143228ab6dc0160c6f9d08c02f1ffa9b
       <td class="align-middle">prix avec tva</td>
       <td class="align-middle"><a href="{{ path('panier_remove_all', {id:article.idarticle}) }}" class="text-decoration-none text-danger"><i class="ri-delete-bin-2-line ri-xl"></i></a></td>
     </tr>
