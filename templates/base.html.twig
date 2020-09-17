@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-        <link rel="stylesheet" href="{{ asset('scss/cartmodal.css') }}">
         {% endblock %}
     </head>
     <body>   
@@ -31,7 +30,7 @@
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a id="cart" class="text-success nav-link"> Items</a>
+                    <a data-toggle="modal" data-target="#modalCart" class="text-success nav-link"> Items</a>
                 </li>
                 <li class="nav-item">
                     <span class="text-white nav-link text-center">{% if app.session.get('panier') is not null %} {{app.session.get('panier').articles|length}} {% else %} 0 {% endif %}</span>
@@ -55,7 +54,7 @@
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
                         <p class="text-white ">
-                        {% if app.user.username is defined %} Welcome {{ app.user.username }} you can <a class=" text-success" href="{{ path('app_logout') }}">logout</a></p>
+                        {% if app.user.username is defined %} Wellcome {{ app.user.username }} you can <a class=" text-success" href="{{ path('app_logout') }}">logout</a></p>
                        {% else %}
                        <p class="text-white ">
                        Welcome visitor you can <a class=" text-success" href="{{ path('app_login') }}">login</a> or <a class=" text-success" href="{{ path('app_register') }}">register</a></p>
@@ -82,6 +81,51 @@
 
         </header>
         {% endblock %}
+
+<!--modal panier ci-dessous brut sans données-->
+        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Your cart</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Product name</th>
+              <th>Price</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+          {#{% for article in panier.articles %} #}
+            <tr>
+              <td>{#{{article.nomarticle}}#}</td>
+              <td>{#{{article.prixarticle}}#}</td>
+              <td><a {# href="{{ path('panier_remove_all', {id:article.idarticle}) }}"#} class="text-decoration-none text-danger"><i class="ri-delete-bin-2-line ri-xl"></i></a></td>
+            </tr>
+            {#{% endfor %}#}
+          </tbody>
+        </table>
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
         {% endblock %}
         {% block javascripts %}
         <!-- JS, Popper.js, and jQuery -->
@@ -94,7 +138,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ asset('js/cartmodal.js') }}"></script>
         {% endblock %}
     </body>
 </html>
