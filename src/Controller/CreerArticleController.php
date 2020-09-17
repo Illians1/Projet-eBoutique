@@ -22,6 +22,10 @@ class CreerArticleController extends AbstractController
      */
     public function creerArticle(Request $request)
     {
+        // GOOD - use of the normal security methods
+        $hasAccess = $this->isGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         // creates a task object and initializes some data for this example
         $article = new Articles();
 
