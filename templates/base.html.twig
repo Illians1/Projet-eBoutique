@@ -54,7 +54,7 @@
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
                         <p class="text-white ">
-                        {% if app.user.username is defined %} Wellcome {{ app.user.username }} you can <a class=" text-success" href="{{ path('app_logout') }}">logout</a></p>
+                        {% if app.user.username is defined %} Welcome {{ app.user.username }} you can <a class=" text-success" href="{{ path('app_logout') }}">logout</a></p>
                        {% else %}
                        <p class="text-white ">
                        Welcome visitor you can <a class=" text-success" href="{{ path('app_login') }}">login</a> or <a class=" text-success" href="{{ path('app_register') }}">register</a></p>
