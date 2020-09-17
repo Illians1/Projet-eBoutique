@@ -9,22 +9,64 @@
     {{ form_start(form, {'attr': {'class': 'd-flex justify-content-center'}}) }}
             {{ form_errors(form) }}
 <div class = "w-25 p-3">
+    
+<form <form class="form-inline">>
     <h1 class="h3 mb-3 font-weight-normal text-center">Créez un nouvel article</h1>
-            {{ form_row(form.nomarticle) }}
-            {{ form_row(form.imagearticle, {'custom-file-input' : 'Ajouter'}) }}
-            {{ form_label(form.imagearticle, 'My Custom Task Label') }}
-           
+    <br>
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Nom</label>
+        <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword">
+        </div>
+    </div>
+
+   
+    <div class="custom-file">
+    <input type="file" class="col-form-label custom-file-input" id="customFile">
+    <label class="custom-file-label" for="customFile">Parcourir</label>
+     <div class="col-sm-10">
+    </div>
+    <br>
 
 
-               
-           
+
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Prix</label>
+        <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword">
+        </div>
+    </div>
+
+
+
+
+
+    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
+    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+        <option selected>Choix...</option>
+        <option value="1">jeu</option>
+        <option value="2">Console</option>
+        <option value="3">Accessoires</option>
+    </select>
+
+    {#  <div class="custom-control custom-checkbox my-1 mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="customControlInline">
+        <label class="custom-control-label" for="customControlInline">Remember my preference</label>
+    </div>
+    #}
+    <button type="submit" class="btn btn-success my-1">Enregistrer</button>
+</form>
+
+
+          {#   {{ form_row(form.nomarticle) }}>
+            {{ form_row(form.imagearticle,{'label': " "}) }}
             {{ form_row(form.prixarticle) }}
             {{ form_row(form.descriptionarticle) }}
-            {{ form_row(form.idcategorie) }}
-            <div class=" text-center">
+            {{ form_row(form.idcategorie) }} #}
+          {#   <div class=" text-center">
                 {{ form_row(form.Enregistrer) }}
-            </div>
+            </div> #}
 </div>
-{{ form_end(form) }}
+{# {{ form_end(form) }} #}
 {% endblock %}
 

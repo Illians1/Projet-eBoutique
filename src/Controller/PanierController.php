@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,74 +23,40 @@ class PanierController extends AbstractController
      */
     public function showpanier()
     {
-        $panier = $this->session->get('panier');
-        $arrayPanier = array();
-        if ($panier != null) {
-            $articles = $panier->getArticles();
+        if ($this->session->get('panier')) {
+            $panier = $this->session->get('panier');
         } else {
-            $articles = array();
+            $panier = new Panier();
+            $this->session->set('panier', $panier);
         }
-        $newPanier = new Panier();
-        foreach ($articles as $value) {
-            if (array_key_exists($value->getIdarticle(), $arrayPanier)) {
-                $i = $arrayPanier[$value->getIdarticle()];
-                $i++;
-                $arrayPanier[$value->getIdarticle()] = $i;
-            } else {
-                $arrayPanier[$value->getIdarticle()] = 1;
-                $newPanier->addArticle($value);
-            }
-        }
-        $newPanier->setNombreArticles($arrayPanier);
+        $list = $panier->getListArticle();
+        dump($list);
 
         return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController', 'panier' => $newPanier, 'nombre' => $arrayPanier,
+            'controller_name' => 'PanierController', 'list' => $list,
         ]);
     }
-    /**
-     * @Route("/panier/remove/{id}", name="panier_remove", requirements={"id":"\d+"})
-     */
-    public function removeArticle($id)
-    {
-        $panier = $this->session->get('panier');
-        if ($panier != null) {
-            $articles = $panier->getArticles();
-        } else {
-            $articles = array();
-        }
-        foreach ($articles as $value) {
-            if ($value->getIdarticle() == $id) {
-                $panier->removeArticle($value);
-                $this->session->set('panier', $panier);
-                return $this->redirectToRoute('panier');
-            }
-        }
-    }
 
     /**
-     * @Route("/panier/add/{id}", name="panier_add", requirements={"id":"\d+"})
+     * @Route("/panier/{id}/{modif}", name="modif_panier", requirements={"id":"\d+"})
      */
-    public function addArticle($id)
+    public function modifOne(Request $request, $id, $modif)
     {
-        $repository = $this->getDoctrine()->getRepository(Articles::class);
-        $articles = $repository->findAll();
-
-        $panier = $this->session->get('panier');
-        if ($panier != null) {
-            $articlesPanier = $panier->getArticles();
-        } else {
-            $articlesPanier = array();
-        }
-
-        foreach ($articles as $value) {
-            if ($value->getIdarticle() == $id) {
-                $panier->addArticle($value);
+        $article = $this->getDoctrine()->getRepository(Articles::class)->findOneBy(['idarticle' => $id]);
+        {
+            if ($this->session->get('panier')) {
+                $panier = $this->session->get('panier');
+            } else {
+                $panier = new Panier();
                 $this->session->set('panier', $panier);
-                return $this->redirectToRoute('panier');
             }
+
+            $panier->modifArticle($modif, $article);
+            $this->session->set('panier', $panier);
+            // stores an attribute in the session for later reuse
+            return $this->redirect($request->headers->get('referer'));
         }
     }
-
     /**
      * @Route("/panier/removeAll/{id}", name="panier_remove_all", requirements={"id":"\d+"})
      */

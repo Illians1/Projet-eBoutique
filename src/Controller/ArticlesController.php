@@ -35,31 +35,19 @@ class ArticlesController extends AbstractController
      */
     public function addId($id)
     {
-        $repository = $this->getDoctrine()->getRepository(Articles::class);
-        $articles = $repository->findAll();
-
         // gets an attribute by name
-        $panier = $this->session->get('panier');
-        if ($panier != null) {
-            $articlesPanier = $panier->getArticles();
-        } else {
-            $articlesPanier = array();
-        }
-        $ajout = new Panier();
-        foreach ($articles as $value) {
-            if ($value->getIdarticle() == $id) {
-                foreach ($articlesPanier as $value2) {
-                    $ajout->addArticle($value2);
-                }
-                $ajout->addArticle($value);
-            }
-        }
-        // stores an attribute in the session for later reuse
-        $this->session->set('panier', $ajout);
 
-        $panier = $this->session->get('panier');
-        dump($panier);
-        return $this->render('articles/index.html.twig', ['articles' => $articles]);
+        if ($this->session->get('panier')) {
+            $panier = $this->session->get('panier');
+        } else {
+            $panier = new Panier();
+            $this->session->set('panier', $panier);
+        }
+
+        $panier->addArticle($id);
+        $this->session->set('panier', $panier);
+        // stores an attribute in the session for later reuse
+        return $this->redirectToRoute('articles');
     }
 
     /**
