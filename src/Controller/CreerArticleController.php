@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\File;
 
 class CreerArticleController extends AbstractController
 {
@@ -23,16 +24,26 @@ class CreerArticleController extends AbstractController
     public function creerArticle(Request $request)
     {
         // GOOD - use of the normal security methods
-        $hasAccess = $this->isGranted('ROLE_ADMIN');
+        /* $hasAccess = $this->isGranted('ROLE_ADMIN');
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
+         */
         // creates a task object and initializes some data for this example
         $article = new Articles();
 
         $form = $this->createFormBuilder($article)
             ->add("nomarticle", TextType::class, ['label' => 'Nom'])
-            ->add("imagearticle", FileType::class, [
-                'label' => 'Image'])
+            ->add('imagearticle', FileType::class, [
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image document',
+                    ]),
+                ],
+                'label' => 'Image',
+            ])
             ->add("prixarticle", NumberType::class, ['label' => 'Prix'])
             ->add("descriptionarticle", TextareaType::class, ['label' => 'Description'])
             ->add("type", HiddenType::class, [

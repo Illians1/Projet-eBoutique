@@ -23,22 +23,34 @@ class Panier
         return $this->articles;
     }
 
-    public function addArticle(Articles $article): self
+    public function modifArticle($modif, $article)
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
+        $articlesPanier = $this->articles;
+        if ($modif == "ajout") {
+            $articlesPanier[] = $article;
+            return $this;
+        } elseif ($modif == "delete") {
+            foreach ($articlesPanier as $value) {
+                if ($value->getIdarticle() == $article->getIdarticle()) {
+                    unset($value);
+                    return $this;
+                }
+            }
         }
-
-        return $this;
     }
 
-    public function removeArticle(Articles $article): self
+    public function getListArticle()
     {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
+        $listArticles = array();
+        $listId = array();
+        foreach ($this->articles as $article) {
+            if (!in_array($article->getIdarticle(), $listId)) {
+                $listArticle[] = $article;
+                $listId[] = $article->getIdarticle();
+            }
         }
 
-        return $this;
+        return $listArticle;
     }
 
     public function getTotal()
@@ -50,9 +62,15 @@ class Panier
         return $sum;
     }
 
-    public function getNombreArticles(): ?array
+    public function getNombreArticles($id): ?int
     {
-        return $this->nombreArticles;
+        $n = 0;
+        foreach ($this->articles as $value) {
+            if ($value->getIdarticle() == $id) {
+                $n++;
+            }
+        }
+        return $n;
     }
 
     public function setNombreArticles(?array $nombreArticles): self
