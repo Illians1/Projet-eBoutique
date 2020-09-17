@@ -25,12 +25,11 @@ class Panier
 
     public function modifArticle($modif, $article)
     {
-        $articlesPanier = $this->articles;
         if ($modif == "ajout") {
-            $articlesPanier[] = $article;
+            $this->articles[] = $article;
             return $this;
         } elseif ($modif == "delete") {
-            foreach ($articlesPanier as $value) {
+            foreach ($this->articles as $value) {
                 if ($value->getIdarticle() == $article->getIdarticle()) {
                     unset($value);
                     return $this;
