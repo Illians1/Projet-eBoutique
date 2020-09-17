@@ -31,6 +31,7 @@ class CreerArticleController extends AbstractController
 
         $form = $this->createFormBuilder($article)
             ->add("nomarticle", TextType::class, ['label' => 'Nom'])
+            ->add('name', null, array('label' => false))
             ->add("imagearticle", FileType::class, [
                 'label' => 'Image'])
             ->add("prixarticle", NumberType::class, ['label' => 'Prix'])
